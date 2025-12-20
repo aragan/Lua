@@ -1,5 +1,20 @@
-Author: Registry
+Author: Registry + Aragan
+
+**Version: 1.3 upgrade by Author: Aragan
+
+- ✔️ Automatically invites players who send you any **/tell**
+- ✔️ Works only when **you are the party leader**
+
+when FreeInv mode active :
+
+//autoinvite  FreeInv 
+//autoinvite  FreeInv on
+//autoinvite  FreeInv off
+
+----
+
 Version: 1.0
+
 Automatically invites players when sent a tell with a specified keyword.
 
 Abbreviation: //ai, //autoinvite
@@ -13,4 +28,4 @@ Commands:
 
 
 If tellback mode is turned on and you are unable to send an invite to the player who sent you a tell with the 
-specified keyword, you will automatically send them a tell back saying that you were unable to invite them. 
+specified keyword, you will automatically send them a tell back saying that you were unable to invite them.
