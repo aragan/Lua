@@ -6,7 +6,7 @@ require('functions')
 local config = require('config')
 
 local defaults = {
-    HaltOnTp = false,
+    HaltOnTp = true,
     Delay = 1.5
 }
 
@@ -17,7 +17,7 @@ local player_id
 
 windower.send_command('bind ^d ara toggle')
 windower.send_command('bind ^f ara haltontp')
--- windower.send_command('bind !d ara toggle')
+windower.send_command('bind !d ara stop')
 
 local shoot = function()
     windower.send_command('input /shoot <t>')
