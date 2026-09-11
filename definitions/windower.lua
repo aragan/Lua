@@ -1149,6 +1149,35 @@ windower = {
         split = function(str, pattern) end,
     },
 
+    ---Packet injection functions
+    ---@class windower.packets
+    packets = {
+        ---Injects an incoming packet, as if the server sent it.
+        ---@param id integer The ID of the packet.
+        ---@param data string The binary data. Must include the 4 byte packet header, but the values are ignored, so they can be zero.
+        inject_incoming = function(id, data) end,
+
+        ---Injects an outgoing packet, as if the client sent it.
+        ---@param id integer The ID of the packet.
+        ---@param data string The binary data. Must include the 4 byte packet header, but the values are ignored, so they can be zero.
+        inject_outgoing = function(id, data) end,
+
+        ---Retrieves the last incoming packet of a certain ID the client received, and the time it was received at.
+        ---@param id integer The ID of the packet.
+        ---@return string|nil, integer #The binary data of the packet and the time, in internal ticks, it was received it.
+        last_incoming = function(id) end,
+
+        ---Retrieves the last outgoing packet of a certain ID the client sent, and the time it was sent at.
+        ---@param id integer The ID of the packet.
+        ---@return string|nil, integer #The binary data of the packet and the time, in internal ticks, it was sent it.
+        last_outgoing = function(id) end,
+
+        ---Parses the provided data of an action packet into a table structure.
+        ---@deprecated Use the Lua `packets` library instead.
+        ---@returns table #The structured action data.
+        parse_action = function(data) end,
+    },
+
     ---@class windower.windower_settings
     ---@field profile_name string Name of the selected Windower profile.
     ---@field branch "stable" | "dev" Name of the current branch of the Windower installation.
@@ -1188,3 +1217,18 @@ windower = {
     ---@field augment string | nil The augment data as a binary string, if the item is augmented, otherwise `nil`.
     item_display = {},
 }
+
+---Returns a binary string containing the provided values packed (that is, serialized in binary form) according to the format string `fmt`.
+---@param fmt string The format string, as described [here](https://github.com/Windower/Lua/wiki/LPack-Library).
+---@param ... string | number The values to encode.
+---@return string #The packed binary string.
+---@nodiscard
+function string.pack(fmt, ...) end
+
+---Returns the values packed in the binary string, extracted according to the format string `fmt`.
+---@param fmt string The format string, as described [here](https://github.com/Windower/Lua/wiki/LPack-Library).
+---@param s string The binary string containing the data to extract.
+---@param pos? integer The position to start the extraction from. Defaults to 1.
+---@return string | number ... #The extracted values.
+---@nodiscard
+function string.unpack(fmt, s, pos) end
